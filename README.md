@@ -1,36 +1,68 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Family Website
 
-## Getting Started
+Учебный семейный сайт, созданный для практического изучения современной frontend-разработки на Next.js. Проект будет развиваться поэтапно: от базовой маршрутизации и способов рендеринга до работы с серверными данными, кешированием и автоматическими тестами.
 
-First, run the development server:
+## Технологии
+
+- Next.js с App Router;
+- React;
+- TypeScript в строгом режиме;
+- Sass и SCSS Modules;
+- ESLint;
+- Prettier.
+
+Redux Toolkit, RTK Query, Jest, React Testing Library и Playwright будут добавляться по мере появления соответствующих задач.
+
+## Требования
+
+- Node.js 20.9 или новее;
+- npm.
+
+## Запуск проекта
+
+Установить зависимости:
+
+```bash
+npm ci
+```
+
+Запустить сервер для разработки:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+После запуска приложение доступно по адресу [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Production-сборка
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Создать оптимизированную сборку:
 
-## Learn More
+```bash
+npm run build
+```
 
-To learn more about Next.js, take a look at the following resources:
+Запустить собранное приложение:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+npm run start
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Команду `start` следует выполнять после успешного `build`.
 
-## Deploy on Vercel
+## Доступные команды
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+| Команда                | Назначение                                              |
+| ---------------------- | ------------------------------------------------------- |
+| `npm run dev`          | Запускает Next.js в режиме разработки                   |
+| `npm run build`        | Создаёт production-сборку и проверяет TypeScript        |
+| `npm run start`        | Запускает предварительно собранное приложение           |
+| `npm run lint`         | Проверяет исходный код с помощью ESLint                 |
+| `npm run typecheck`    | Проверяет типы без создания JavaScript-файлов           |
+| `npm run format`       | Форматирует поддерживаемые файлы с помощью Prettier     |
+| `npm run format:check` | Проверяет форматирование без изменения файлов           |
+| `npm run check`        | Последовательно запускает Prettier, ESLint и TypeScript |
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Структура исходного кода
+
+Маршруты и корневой layout находятся в `src/app`. Стили отдельных компонентов создаются как SCSS Modules с расширением `.module.scss`. Глобальные стили подключаются в корневом layout.
