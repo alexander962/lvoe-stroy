@@ -1,5 +1,7 @@
+$page-background: #f2f2f2;
+
 .page {
-  --background: #fafafa;
+  --background: #{$page-background};
   --foreground: #fff;
 
   --text-primary: #000;
@@ -125,7 +127,7 @@ a.secondary {
 
 @media (prefers-color-scheme: dark) {
   .logo {
-    filter: invert();
+    filter: invert(100%);
   }
 
   .page {
