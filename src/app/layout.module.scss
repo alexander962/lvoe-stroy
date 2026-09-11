@@ -20,6 +20,7 @@
   gap: 32px;
   @media screen and (max-width: 768px) {
     gap: 16px;
+    justify-content: space-between;
   }
 }
 
@@ -43,6 +44,9 @@
   min-width: 0;
   overflow-x: auto;
   white-space: nowrap;
+  @media (max-width: 768px) {
+    display: none;
+  }
 
   a {
     padding: 6px 12px;

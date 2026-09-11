@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.scss";
 import styles from "./layout.module.scss";
+import MobileNavigation from "@/app/mobile-navigation";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -38,6 +39,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
               <Link href="/server-time">Серверное время</Link>
               <Link href="/daily-tip">Совет дня</Link>
             </nav>
+            <MobileNavigation />
           </div>
         </header>
 
