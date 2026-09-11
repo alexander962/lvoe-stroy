@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
+import Image from "next/image";
+import Link from "next/link";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.scss";
-import Link from "next/link";
+import styles from "./layout.module.scss";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -24,22 +26,26 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="ru" className={`${geistSans.variable} ${geistMono.variable}`}>
       <body>
-        <header>
-          <Link href="/">Focus Board</Link>
-          <nav>
-            <Link href="/">Главная</Link>
-            <Link href="/tasks">Задачи</Link>
-            <Link href="/server-time">Серверное время</Link>
-            <Link href="/daily-tip">Совет дня</Link>
-          </nav>
+        <header className={styles.header}>
+          <div className={styles.container}>
+            <Link href="/" className={styles.brand}>
+              <Image src="/logo.svg" width={30} height={30} alt="" />
+              Focus Board
+            </Link>
+            <nav className={styles.navigation}>
+              <Link href="/">Главная</Link>
+              <Link href="/tasks">Задачи</Link>
+              <Link href="/server-time">Серверное время</Link>
+              <Link href="/daily-tip">Совет дня</Link>
+            </nav>
+          </div>
         </header>
 
-        <main>{children}</main>
+        <main className={styles.main}>{children}</main>
 
-        <footer>
-          <div>
-            <h3>Focus Board</h3>
-            <p>{year} год</p>
+        <footer className={styles.footer}>
+          <div className={styles.container}>
+            <h3 className={styles.footerText}>Focus Board · {year} год</h3>
           </div>
         </footer>
       </body>
