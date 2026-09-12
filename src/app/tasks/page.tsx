@@ -1,17 +1,17 @@
 import Link from "next/link";
+import { tasks } from "./data";
 
 export default function Tasks() {
   return (
     <div>
       <h1>Задачи</h1>
-      <p>Тут будут задачи</p>
+      <p>{tasks.length} задач всего</p>
       <ul>
-        <li>
-          <Link href={`/tasks/1`}>Задача 1</Link>
-        </li>
-        <li>
-          <Link href={`/tasks/2`}>Задача 2</Link>
-        </li>
+        {tasks.map((task) => (
+          <li key={task.id}>
+            <Link href={`/tasks/${task.id}`}>{task?.title}</Link>
+          </li>
+        ))}
       </ul>
     </div>
   );
