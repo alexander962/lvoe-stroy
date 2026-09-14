@@ -1,18 +1,12 @@
-import Link from "next/link";
+import { tasks } from "./data";
+import TaskFilter from "@/app/tasks/task-filter";
 
 export default function Tasks() {
   return (
     <div>
       <h1>Задачи</h1>
-      <p>Тут будут задачи</p>
-      <ul>
-        <li>
-          <Link href={`/tasks/1`}>Задача 1</Link>
-        </li>
-        <li>
-          <Link href={`/tasks/2`}>Задача 2</Link>
-        </li>
-      </ul>
+      <p>{tasks.length} задач всего</p>
+      <TaskFilter tasks={tasks} />
     </div>
   );
 }
