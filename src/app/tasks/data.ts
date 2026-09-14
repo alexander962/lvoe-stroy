@@ -31,11 +31,29 @@ export const tasks: Task[] = [
   },
   {
     id: "3",
+    title: "Написать документацию API",
+    description:
+      "Задокументировать все REST-эндпоинты с описанием запросов, ответов, аутентификации и примерами вызовов.",
+    status: "in-progress",
+    priority: "medium",
+    createdAt: "2026-09-03T12:30:00.000Z",
+  },
+  {
+    id: "4",
     title: "Настроить CI/CD pipeline",
     description:
       "Подготовить автоматические проверки для тестирования и деплоя проекта.",
-    status: "in-progress",
+    status: "planned",
     priority: "high",
+    createdAt: "2026-09-05T15:45:00.000Z",
+  },
+  {
+    id: "5",
+    title: "Проверка доступности",
+    description:
+      "Запустить тесты axe и скринридер на основных пользовательских сценариях, исправить ошибки уровня AA.",
+    status: "planned",
+    priority: "low",
     createdAt: "2026-09-05T15:45:00.000Z",
   },
 ];
