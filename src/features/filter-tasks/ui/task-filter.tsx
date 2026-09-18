@@ -9,7 +9,7 @@ type TaskFilterProps = {
 
 type TaskFilterValue = Task["status"] | "all";
 
-export default function TaskFilter({ tasks }: TaskFilterProps) {
+export function TaskFilter({ tasks }: TaskFilterProps) {
   const [activeFilter, setActiveFilter] = useState<TaskFilterValue>("all");
 
   const visibleTasks =

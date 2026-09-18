@@ -1,5 +1,5 @@
 import { tasks } from "./data";
-import TaskFilter from "@/app/tasks/task-filter";
+import { TaskFilter } from "@/features/filter-tasks";
 
 export default function Tasks() {
   return (
