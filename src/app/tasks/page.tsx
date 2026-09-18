@@ -1,12 +1,6 @@
 import { tasks } from "./data";
-import { TaskFilter } from "@/features/filter-tasks";
+import { TaskBoard } from "@/widgets/task-board";
 
 export default function Tasks() {
-  return (
-    <div>
-      <h1>Задачи</h1>
-      <p>{tasks.length} задач всего</p>
-      <TaskFilter tasks={tasks} />
-    </div>
-  );
+  return <TaskBoard tasks={tasks} />;
 }
