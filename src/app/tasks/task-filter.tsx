@@ -1,8 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import type { Task } from "./data";
-import Link from "next/link";
+import { TaskCard, type Task } from "@/entities/task";
 
 type TaskFilterProps = {
   tasks: Task[];
@@ -57,8 +56,7 @@ export default function TaskFilter({ tasks }: TaskFilterProps) {
         <ul>
           {visibleTasks.map((task) => (
             <li key={task.id}>
-              <Link href={`/tasks/${task.id}`}>{task.title}</Link>
-              <span>{task.status}</span>
+              <TaskCard task={task} />
             </li>
           ))}
         </ul>
