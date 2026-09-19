@@ -1,6 +1,6 @@
 import { tasks } from "./data";
-import { TaskBoard } from "@/widgets/task-board";
+import { TasksView } from "@/views/tasks";
 
 export default function Tasks() {
-  return <TaskBoard tasks={tasks} />;
+  return <TasksView tasks={tasks} />;
 }
