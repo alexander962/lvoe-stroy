@@ -1,4 +1,4 @@
-import { tasks } from "./data";
+import { tasks } from "@/entities/task";
 import { TasksView } from "@/views/tasks";
 
 export default function Tasks() {

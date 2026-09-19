@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { tasks } from "@/app/tasks/data";
+import { tasks } from "@/entities/task";
 import { notFound } from "next/navigation";
 
 export default async function Task({ params }: PageProps<"/tasks/[id]">) {
