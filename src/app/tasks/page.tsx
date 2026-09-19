@@ -1,12 +1,6 @@
-import { tasks } from "./data";
-import TaskFilter from "@/app/tasks/task-filter";
+import { tasks } from "@/entities/task";
+import { TasksView } from "@/views/tasks";
 
 export default function Tasks() {
-  return (
-    <div>
-      <h1>Задачи</h1>
-      <p>{tasks.length} задач всего</p>
-      <TaskFilter tasks={tasks} />
-    </div>
-  );
+  return <TasksView tasks={tasks} />;
 }
