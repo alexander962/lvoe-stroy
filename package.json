@@ -3,6 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "api": "node mock-api/server.mjs",
+    "api:reset": "curl -sS -X POST http://localhost:4000/__test/reset",
+    "api:fail-next": "curl -sS -X POST http://localhost:4000/__test/fail-next",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
