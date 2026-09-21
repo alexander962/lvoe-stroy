@@ -1,14 +1,15 @@
 import { configureStore } from "@reduxjs/toolkit";
-
-type EmptyState = Record<string, unknown>;
-
-const emptyReducer = (state: EmptyState = {}): EmptyState => {
-  return state;
-};
+import { taskApi } from "@/entities/task";
 
 export const makeStore = () => {
   return configureStore({
-    reducer: emptyReducer,
+    reducer: {
+      [taskApi.reducerPath]: taskApi.reducer,
+    },
+
+    middleware: (getDefaultMiddleware) => {
+      return getDefaultMiddleware().concat(taskApi.middleware);
+    },
   });
 };
 
