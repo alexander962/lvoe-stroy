@@ -1,14 +1,9 @@
-import type { Task } from "@/entities/task";
 import { TaskBoard } from "@/widgets/task-board";
 
-type TasksViewProps = {
-  tasks: Task[];
-};
-
-export function TasksView({ tasks }: TasksViewProps) {
+export function TasksView() {
   return (
     <div>
-      <TaskBoard tasks={tasks} />
+      <TaskBoard />
     </div>
   );
 }

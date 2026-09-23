@@ -1,11 +1,16 @@
-import type { Task } from "@/entities/task";
+"use client";
+
 import { TaskFilter } from "@/features/filter-tasks";
+import { useGetTasksQuery } from "@/entities/task";
 
-type TaskBoardProps = {
-  tasks: Task[];
-};
+export function TaskBoard() {
+  const { data: tasks = [], isLoading, isError } = useGetTasksQuery();
 
-export function TaskBoard({ tasks }: TaskBoardProps) {
+  if (isLoading) return <section>Загружаем задачи...</section>;
+
+  if (isError)
+    return <section role="alert">Не удалось загрузить задачи</section>;
+
   return (
     <section>
       <header>
