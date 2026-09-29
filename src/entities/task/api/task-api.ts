@@ -3,6 +3,7 @@ import type { Task, CreateTaskInput } from "../model/types";
 
 export const taskApi = createApi({
   reducerPath: "taskApi",
+  tagTypes: ["Task"],
 
   baseQuery: fetchBaseQuery({
     baseUrl: "http://localhost:4000",
@@ -11,6 +12,7 @@ export const taskApi = createApi({
   endpoints: (builder) => ({
     getTasks: builder.query<Task[], void>({
       query: () => "/tasks",
+      providesTags: [{ type: "Task", id: "List" }],
     }),
 
     addTask: builder.mutation<Task, CreateTaskInput>({
@@ -19,6 +21,7 @@ export const taskApi = createApi({
         method: "POST",
         body,
       }),
+      invalidatesTags: [{ type: "Task", id: "List" }],
     }),
   }),
 });
