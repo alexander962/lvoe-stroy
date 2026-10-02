@@ -6,13 +6,14 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { createTaskSchema } from "../model/create-task-schema";
 
 type CreateTaskFormProps = {
-  onSubmit: (values: CreateTaskInput) => void | Promise<void>;
+  onSubmit: (values: CreateTaskInput) => Promise<boolean>;
 };
 
 export function CreateTaskForm({ onSubmit }: CreateTaskFormProps) {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors, isSubmitting },
   } = useForm<CreateTaskInput>({
     resolver: zodResolver(createTaskSchema),
@@ -24,11 +25,19 @@ export function CreateTaskForm({ onSubmit }: CreateTaskFormProps) {
     },
   });
 
+  const handleValidSubmit = async (values: CreateTaskInput) => {
+    const wasSubmitted = await onSubmit(values);
+
+    if (wasSubmitted) {
+      reset();
+    }
+  };
+
   return (
     <section>
       <h2>Добавить задачу</h2>
 
-      <form onSubmit={handleSubmit(onSubmit)} noValidate>
+      <form onSubmit={handleSubmit(handleValidSubmit)} noValidate>
         <div>
           <label htmlFor="task-title">Название *</label>
           <input

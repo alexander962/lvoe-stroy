@@ -1,14 +1,26 @@
 import Link from "next/link";
-import { tasks } from "@/entities/task";
 import { notFound } from "next/navigation";
+import type { Task } from "@/entities/task";
 
 export default async function Task({ params }: PageProps<"/tasks/[id]">) {
   const { id } = await params;
-  const task = tasks.find((task) => task?.id === id);
 
-  if (!task) {
+  const response = await fetch(
+    `http://localhost:4000/tasks/${encodeURIComponent(id)}`,
+    { cache: "no-store" },
+  );
+
+  if (response.status === 404) {
     notFound();
   }
+
+  if (!response.ok) {
+    throw new Error(
+      `Не удалось загрузить данные по задаче: HTTP ${response.status}`,
+    );
+  }
+
+  const task: Task = await response.json();
 
   return (
     <div>

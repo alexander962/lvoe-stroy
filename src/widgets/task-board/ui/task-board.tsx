@@ -26,8 +26,9 @@ export function TaskBoard() {
   const handleCreateTask = async (values: CreateTaskInput) => {
     try {
       await addTask(values).unwrap();
+      return true;
     } catch {
-      // Ошибка отображается через isCreateError
+      return false;
     }
   };
 
