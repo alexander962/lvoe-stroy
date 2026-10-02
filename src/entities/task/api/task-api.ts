@@ -21,6 +21,27 @@ export const taskApi = createApi({
         method: "POST",
         body,
       }),
+
+      async onQueryStarted(newTask, { dispatch, queryFulfilled }) {
+        const temporaryTask: Task = {
+          ...newTask,
+          id: `optimistic-${crypto.randomUUID()}`,
+          createdAt: new Date().toISOString(),
+        };
+
+        const patchResult = dispatch(
+          taskApi.util.updateQueryData("getTasks", undefined, (draft) => {
+            draft.push(temporaryTask);
+          }),
+        );
+
+        try {
+          await queryFulfilled;
+        } catch {
+          patchResult.undo();
+        }
+      },
+
       invalidatesTags: [{ type: "Task", id: "List" }],
     }),
   }),
