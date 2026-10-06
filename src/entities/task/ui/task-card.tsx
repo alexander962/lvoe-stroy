@@ -1,11 +1,13 @@
 import type { Task } from "../model/types";
 import Link from "next/link";
+import type { ReactNode } from "react";
 
 type TaskCardProps = {
   task: Task;
+  actions?: ReactNode;
 };
 
-export function TaskCard({ task }: TaskCardProps) {
+export function TaskCard({ task, actions }: TaskCardProps) {
   return (
     <div>
       <Link href={`/tasks/${task.id}`}>{task.title}</Link>
@@ -22,6 +24,7 @@ export function TaskCard({ task }: TaskCardProps) {
         <span>Дата создания</span>
         <p>{task.createdAt}</p>
       </div>
+      {actions}
     </div>
   );
 }
