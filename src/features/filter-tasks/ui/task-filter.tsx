@@ -1,15 +1,16 @@
 "use client";
 
-import { useState } from "react";
+import { type ReactNode, useState } from "react";
 import { TaskCard, type Task } from "@/entities/task";
 
 type TaskFilterProps = {
   tasks: Task[];
+  renderTaskActions?: (task: Task) => ReactNode;
 };
 
 type TaskFilterValue = Task["status"] | "all";
 
-export function TaskFilter({ tasks }: TaskFilterProps) {
+export function TaskFilter({ tasks, renderTaskActions }: TaskFilterProps) {
   const [activeFilter, setActiveFilter] = useState<TaskFilterValue>("all");
 
   const visibleTasks =
@@ -56,7 +57,7 @@ export function TaskFilter({ tasks }: TaskFilterProps) {
         <ul>
           {visibleTasks.map((task) => (
             <li key={task.id}>
-              <TaskCard task={task} />
+              <TaskCard task={task} actions={renderTaskActions?.(task)} />
             </li>
           ))}
         </ul>

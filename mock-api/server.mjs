@@ -18,7 +18,7 @@ function wait(ms) {
 function sendJson(response, statusCode, payload) {
   response.writeHead(statusCode, {
     "Access-Control-Allow-Headers": "Content-Type",
-    "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
+    "Access-Control-Allow-Methods": "GET, POST, DELETE, OPTIONS",
     "Access-Control-Allow-Origin": "http://localhost:3000",
     "Content-Type": "application/json; charset=utf-8",
   });
@@ -28,7 +28,7 @@ function sendJson(response, statusCode, payload) {
 function sendEmpty(response, statusCode) {
   response.writeHead(statusCode, {
     "Access-Control-Allow-Headers": "Content-Type",
-    "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
+    "Access-Control-Allow-Methods": "GET, POST, DELETE, OPTIONS",
     "Access-Control-Allow-Origin": "http://localhost:3000",
   });
   response.end();
@@ -104,6 +104,20 @@ const server = createServer(async (request, response) => {
     }
 
     sendJson(response, 200, task);
+    return;
+  }
+
+  if (request.method === "DELETE" && taskMatch) {
+    const id = decodeURIComponent(taskMatch[1]);
+    const taskIndex = tasks.findIndex((item) => item.id === id);
+
+    if (taskIndex === -1) {
+      sendJson(response, 404, { message: "Task not found" });
+      return;
+    }
+
+    tasks = tasks.filter((item) => item.id !== id);
+    sendEmpty(response, 204);
     return;
   }
 

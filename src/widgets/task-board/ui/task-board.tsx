@@ -1,7 +1,10 @@
 "use client";
 
 import { TaskFilter } from "@/features/filter-tasks";
-import { useGetTasksQuery } from "@/entities/task";
+import { useGetTasksQuery, useAddTaskMutation } from "@/entities/task";
+import type { CreateTaskInput } from "@/entities/task";
+import { CreateTaskForm } from "@/features/create-task";
+import { DeleteTaskButton } from "@/features/delete-task";
 
 export function TaskBoard() {
   const {
@@ -11,6 +14,24 @@ export function TaskBoard() {
     isFetching,
     refetch,
   } = useGetTasksQuery();
+
+  const [
+    addTask,
+    {
+      isLoading: isCreating,
+      isSuccess: isCreateSuccess,
+      isError: isCreateError,
+    },
+  ] = useAddTaskMutation();
+
+  const handleCreateTask = async (values: CreateTaskInput) => {
+    try {
+      await addTask(values).unwrap();
+      return true;
+    } catch {
+      return false;
+    }
+  };
 
   if (isLoading) return <section>Загружаем задачи...</section>;
 
@@ -27,7 +48,17 @@ export function TaskBoard() {
         </button>
       </header>
 
-      <TaskFilter tasks={tasks} />
+      <CreateTaskForm onSubmit={handleCreateTask} />
+      {isCreating && <div>Сохраняем задачу...</div>}
+      {isCreateSuccess && <div role="status">Задача сохранена на сервере</div>}
+      {isCreateError && <div role="alert">Не удалось добавить задачу</div>}
+
+      <TaskFilter
+        tasks={tasks}
+        renderTaskActions={(task) => (
+          <DeleteTaskButton taskId={task.id} taskTitle={task.title} />
+        )}
+      />
     </section>
   );
 }
