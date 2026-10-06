@@ -4,7 +4,6 @@ export type {
   Task,
   CreateTaskInput,
 } from "./model/types";
-export { tasks } from "./model/data";
 
 export { TaskCard } from "./ui/task-card";
 
